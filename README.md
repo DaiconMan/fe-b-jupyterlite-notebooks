@@ -1,37 +1,91 @@
-# JupyterLite Demo
+# fe-b-jupyterlite-notebooks
 
-[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlite.github.io/demo)
+**基本情報技術者・科目B**の実演用ノートブック集です。  
+[JupyterLite](https://jupyterlite.readthedocs.io/) 上で動作し、**ブラウザだけ**でアルゴリズムの可視化や過去問風MCQ（択一）を操作できます。
 
-JupyterLite deployed as a static site to GitHub Pages, for demo purposes.
+- 公開URL（例）：`https://<YOUR_ACCOUNT>.github.io/fe-b-jupyterlite-notebooks/`
+- JupyterLab 直リンク：`/lab/` を付けてアクセス（例：`.../lab/`）
 
-## ✨ Try it in your browser ✨
+---
 
-➡️ **https://jupyterlite.github.io/demo**
+## 収録コンテンツ
 
-![github-pages](https://user-images.githubusercontent.com/591645/120649478-18258400-c47d-11eb-80e5-185e52ff2702.gif)
+- `fe_b_demo_notebook.ipynb`  
+  素数判定の**ループ境界**と**二重ハッシュ挿入**をスライダーでトレースできるデモ。
 
-## Requirements
+- `kakomon/`  
+  過去問スタイルの **MCQ ノート**（`A-01.ipynb`, `B-01.ipynb`, `index.ipynb`）。  
+  `ipywidgets` で「選択 → 判定ボタン → 解説表示」ができます。
 
-JupyterLite is being tested against modern web browsers:
+ディレクトリ構成:
+```
+content/
+├─ fe_b_demo_notebook.ipynb
+├─ kakomon/
+│  ├─ index.ipynb
+│  ├─ A-01.ipynb
+│  └─ B-01.ipynb
+└─ README.md
+```
 
-- Firefox 90+
-- Chromium 89+
+> **メモ**: JupyterLite では、**ビルド時点で `content/` にあるファイルのみ**がサイトに含まれます。
 
-## Deploy your JupyterLite website on GitHub Pages
+---
 
-Check out the guide on the JupyterLite documentation: https://jupyterlite.readthedocs.io/en/latest/quickstart/deploy.html
+## 使い方
 
-## Further Information and Updates
+1. サイトの `/lab/` を開く（JupyterLab が起動します）。
+2. 左のファイルブラウザから `content/` 配下のノートを開く。
+3. ウィジェット（スライダー／ラジオ）を動かして可視化・判定を体験。
 
-For more info, keep an eye on the JupyterLite documentation:
+---
 
-- How-to Guides: https://jupyterlite.readthedocs.io/en/latest/howto/index.html
-- Reference: https://jupyterlite.readthedocs.io/en/latest/reference/index.html
+## ノートの追加・更新
 
-This template provides the Pyodide kernel (`jupyterlite-pyodide-kernel`), the JavaScript kernel (`jupyterlite-javascript-kernel`), and the p5 kernel (`jupyterlite-p5-kernel`), along with other
-optional utilities and extensions to make the JupyterLite experience more enjoyable. See the
-[`requirements.txt` file](requirements.txt) for a list of all the dependencies provided.
+1. `content/` に `.ipynb` を追加または編集してコミット。
+2. GitHub Actions が自動でビルド＆Pagesへデプロイ。
+3. 反映されない場合はブラウザの**ハードリロード**（強制再読込）を実施  
+   （Service Worker によるキャッシュが強いため）。
 
-For a template based on the Xeus kernel, see the [`jupyterlite/xeus-python-demo` repository](https://github.com/jupyterlite/xeus-python-demo)
+> 例：年度別に増やす場合  
+> `content/kakomon/2024/` のようなサブフォルダを作り、`index.ipynb` と各問題ノートを置く。
 
+---
 
+## 過去問ノートの作り方（推奨フロー）
+
+- **手早く作る**：既存ノートを複製→問題文と選択肢、正答・解説を差し替え。  
+- **まとめて量産**：JSON で問題定義を書き、生成スクリプトで **1問1ノート** に変換。  
+  （同梱の「ノート自動生成キット」を使うか、`ipywidgets` を用いたテンプレを流用してください）
+
+---
+
+## 実演Tips
+
+- **アルゴリズム**：境界条件（開始/終了/含む・含まない）をウィジェットで明示。  
+- **配列**：科目Bの擬似言語では**1始まり**が基本である点をノート中に表で示す。  
+- **セキュリティ設問**：登場人物→資産→脅威→対策の順で選択肢を切ると伝わりやすい。
+
+---
+
+## ライセンス / 出典
+
+- 本リポジトリ内の**サンプルコードおよび自作問題**のライセンス: （任意で記載してください。例: MIT）  
+- **公開された過去問題**を掲載する場合は、**出典の明記**と**注意事項の遵守**をお願いします。  
+  例：  
+  > 出典：情報処理推進機構（IPA）「基本情報技術者試験 科目B 過去問題」  
+  > 一部レイアウトを調整し、解説を追記しています。
+
+---
+
+## 開発メモ
+
+- 依存：JupyterLite（Pyodide）／`ipywidgets`  
+- 互換：WASM 上で動かないネイティブ依存パッケージは使用していません。  
+- デプロイ：GitHub Pages（Actions による自動ビルド）
+
+---
+
+## 連絡先
+
+不具合・提案は Issues へ。教材の追加リクエストも歓迎です。
