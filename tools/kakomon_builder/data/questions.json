@@ -1,11 +1,6 @@
 {
-  "meta": {
-    "title": "科目B 可視化ノート（サンプル）",
-    "source": "自作サンプル。実運用ではIPA公開問題の問題文を入れてください。"
-  },
   "questions": [
     {
-      "id": "A-01",
       "title": "素数判定のループ境界",
       "stem": "2以上max以下の整数iについて、jを2から⌊√i⌋まで増やして割り切れるかを調べる。ループ境界として適切なのはどれか。",
       "options": [
@@ -15,10 +10,18 @@
         "j = 1 から ⌊√i⌋ まで"
       ],
       "answer": 2,
-      "explain": "平方根までで十分。j=1は除外。"
+      "explain": "平方根までで十分。j=1は除外。",
+      "source_year": "2024",
+      "source_session": "公開問題(科目B)",
+      "source_qid": "Q-A01",
+      "source_url": "https://example.com/ipa/fe-b-2024-sample-A01",
+      "tags": [
+        "アルゴリズム",
+        "素数",
+        "ループ境界"
+      ]
     },
     {
-      "id": "B-01",
       "title": "二重ハッシュの挿入先",
       "stem": "T[1..5]を-1で初期化。h1(x)=(x mod 5)+1, h2(x)=((x+3) mod 5)+1。3,18,11を順に挿入した後のTは？",
       "options": [
@@ -28,7 +31,16 @@
         "{ -1, -1, 18, 3, 11 }"
       ],
       "answer": 0,
-      "explain": "3→h1=4, 18→h1=4衝突→h2=2, 11→h1=2衝突→h2=5。"
+      "explain": "3→h1=4, 18→h1=4衝突→h2=2, 11→h1=2衝突→h2=5。",
+      "source_year": "2024",
+      "source_session": "公開問題(科目B)",
+      "source_qid": "Q-B01",
+      "source_url": "https://example.com/ipa/fe-b-2024-sample-B01",
+      "tags": [
+        "データ構造",
+        "ハッシュ",
+        "配列1始まり"
+      ]
     }
   ]
 }

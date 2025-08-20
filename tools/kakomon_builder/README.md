@@ -1,18 +1,33 @@
 
-# 過去問 → Jupyterノート 自動生成キット（ローカル/CI両対応）
+# 過去問 → Jupyter ノート自動生成（出典ひも付け対応版）
 
-- 編集するのは **`tools/kakomon_builder/data/questions.json`** だけ。
-- 生成物は **`content/kakomon/`** に出力され、JupyterLiteで配信されます。
+- ノートごとに **出典メタデータ**（年度 / 回・期 / 問番号 / 出典URL / タグ）を埋め込み、
+  ファイル名とノート冒頭のバッジにも反映します。
+- さらに `content/kakomon/_catalog.json` と **検索フィルタ付き index.ipynb** を生成します（ipywidgets）。
 
-## 使い方（ローカル）
+## 使い方
 ```bash
 python tools/kakomon_builder/build_notebooks.py tools/kakomon_builder/data/questions.json content/kakomon
 git add content/kakomon
-git commit -m "chore(kakomon): regenerate notebooks from data/questions.json"
+git commit -m "chore(kakomon): regenerate notebooks with source metadata"
 ```
 
-## よくある質問
-- **ipywidgetsが無い** → 生成ノート先頭に**自動導入セル**を同梱済み（JupyterLite/通常Jupyter両対応）。
-- **公開に出ない** → `content/` 以下に出力されていますか？コミット済みですか？
+## questions.json の書式（例）
+```json
+{
+  "questions": [{
+    "title": "素数判定のループ境界",
+    "stem": "…",
+    "options": ["…"],
+    "answer": 2,
+    "explain": "…",
+    "source_year": "2024",
+    "source_session": "公開問題(科目B)",
+    "source_qid": "Q-A01",
+    "source_url": "https://example.com/ipa/…",
+    "tags": ["アルゴリズム","…"]
+  }]
+}
+```
 
-このキット作成: 2025-08-20
+※ 実運用では IPA 公開ページの実URLを入れてください。出典の明記と注意事項の遵守をお忘れなく。
